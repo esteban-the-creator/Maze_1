@@ -104,6 +104,14 @@ public class PlayerMov : MonoBehaviour
         angular, lo cual también puede afectar el correcto desplazamiento del heroe, por lo cual también es importante 
         mantenerla igualada a 0*/
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponentInParent<IInteract>() != null )
+        {
+            other.GetComponentInParent<IInteract>().Interact(); 
+        }
+    }
 }
 
 
