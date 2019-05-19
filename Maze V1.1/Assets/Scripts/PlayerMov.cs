@@ -22,7 +22,7 @@ public class PlayerMov : MonoBehaviour
         herorigidbody.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;/* Una solución efectiva para la colisiones que haga el jugador es hacer que la
         detección de colisiones del rigidbody sea continua dinámica*/
 
-        //mahHero.AddComponent<Camera>();
+        mahHero.AddComponent<Camera>();
     }
 
 
@@ -75,7 +75,7 @@ public class PlayerMov : MonoBehaviour
          Se asginan a los atributos de clase"rotation" los valores de los ejes Y y X obtenidos con el mouse 
          luego se llama al atributo eulerAngles de la clase transform del objeto mahHero y con un new 
          vector 3 se le asignan los valores obtenidos a través del mouse; esto con el fin de poder rotar la camara 
-         a través del escenario
+         a través del escenario */
         
 
         //if (Input.GetAxis("Mouse X") < 45 || Input.GetAxis("Mouse X") > -45)
@@ -92,8 +92,8 @@ public class PlayerMov : MonoBehaviour
         //newrotation.z = 0;
 
         //mahHero.transform.eulerAngles = newrotation;
-        */
-
+        
+        
         herorigidbody.velocity = Vector3.zero; /* se iguala el vector de velocidad del rigidbody del heroe para evitar 
         que la acelareación que obtenga al colisionar con otros objetos fisicos que también tengan rigidbody, lo haga 
         trasladar infinitamente gracias a la aceleración constante que obteien con el choque.

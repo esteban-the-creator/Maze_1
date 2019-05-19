@@ -4,30 +4,25 @@ using UnityEngine;
 
 public class ThirdPCamera : MonoBehaviour
 {
-
-    public GameObject elJugador;
-    Vector3 intialDistanceToPlyrOffset;
+    public GameObject target;
     public float rotateSpeed = 5;
+    Vector3 offset;
 
     void Start()
-
     {
-        intialDistanceToPlyrOffset = elJugador.transform.position - transform.position;
+        offset = target.transform.position - transform.position;
     }
 
     void LateUpdate()
     {
-        //Vector3 posicionConstante = elJugador.transform.position + intialDistanceToPlyrOffset;
-        //transform.position = posicionConstante;
-
-
         float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
-        elJugador.transform.Rotate(0, horizontal, 0);
+        target.transform.Rotate(0, horizontal, 0);
 
-        float mantenerAnguloConsAlJugador = elJugador.transform.eulerAngles.y;
-        Quaternion rotation = Quaternion.Euler(0, mantenerAnguloConsAlJugador, 0);
-        transform.position = elJugador.transform.position - (rotation * intialDistanceToPlyrOffset);
+        float desiredAngle = target.transform.eulerAngles.y;
+        Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
+        transform.position = target.transform.rotation *     (rotation * offset);
 
-        transform.LookAt(elJugador.transform);
+        transform.LookAt(target.transform);
     }
 }
+
