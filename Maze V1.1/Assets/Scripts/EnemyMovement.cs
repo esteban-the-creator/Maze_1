@@ -17,7 +17,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void Move()
     {
-        Vector3 actualWaitPointDisplacement = waitPointTransforms[actualWaitpoint].position - enemyTransform.position;
+        Vector3 actualWaitPointDisplacement = waitPointTransforms[actualWaitpoint].position - enemyTransform.position; // waitPointTransforms[actualWaitpoint].position significa: listadetransform[en la pos actual].position (se accede al transform.position del empty actual)
         float distanceToWaitPoint = actualWaitPointDisplacement.magnitude;
 
         if (distanceToWaitPoint > 1)

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//[RequireComponent( requiredComponent: typeof(EnemyMovement))]
+
 public class Detectar : MonoBehaviour
 {
 
@@ -12,10 +15,12 @@ public class Detectar : MonoBehaviour
     [SerializeField]
     float rangoDeVision = 10f;
     float precaucion;
+    EnemyMovement enemyMovement;
 
     void Awake()
     {
         enemyTransform = transform;
+        enemyMovement = gameObject.GetComponent<EnemyMovement>();
     }
 
 
@@ -45,6 +50,7 @@ public class Detectar : MonoBehaviour
         {
             alert.SetActive(false);
             precaucion = 0;
+            enemyMovement.Move();
         }
 
 
