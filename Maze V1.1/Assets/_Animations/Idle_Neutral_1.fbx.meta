@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: e566a601721485e46863d1027d4d6d4e
+guid: bb5715c9604094b48949fb4aaa87b4df
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
@@ -161,7 +161,7 @@ ModelImporter:
     400152: Spine
     400154: TongueBack
     400156: TongueTip
-    7400000: Idle2Strafe_AllAngles
+    7400000: Idle_Neutral_1
     9500000: //RootNode
     2186277476908879412: ImportLogs
   externalObjects: {}
@@ -198,10 +198,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Idle2Strafe_AllAngles
-      takeName: _117_to_120_a_U1_M_P_idle2Strafe_AllAngles__Fb_p45-180_No_0_PJ_1
-      firstFrame: 53
-      lastFrame: 1215
+      name: Idle_Neutral_1
+      takeName: _87_88_a_U1_M_P_idle_Neutral__Fb_p0_No_0_PJ_1
+      firstFrame: 226
+      lastFrame: 742
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -224,7 +224,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+      additiveReferencePoseFrame: 50
     isReadable: 1
   meshes:
     lODScreenPercentages: []
