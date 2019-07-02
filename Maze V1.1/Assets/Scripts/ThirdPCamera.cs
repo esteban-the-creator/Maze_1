@@ -5,24 +5,29 @@ using UnityEngine;
 public class ThirdPCamera : MonoBehaviour
 {
     public GameObject target;
+    private Camera cam;
+    private Transform camTransform;
     public float rotateSpeed = 5;
     Vector3 offset;
 
     void Start()
     {
-        offset = target.transform.position - transform.position;
+       
+        cam = Camera.main;
+        camTransform = cam.transform;
+        offset = camTransform.position - target.transform.position;
+
     }
 
     void LateUpdate()
     {
+        
+        Debug.Log("offset de la camara" + offset);
         float horizontal = Input.GetAxis("Mouse X") * rotateSpeed;
-        target.transform.Rotate(0, horizontal, 0);
-
         float desiredAngle = target.transform.eulerAngles.y;
         Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
-        transform.position = target.transform.rotation *     (rotation * offset);
-
-        transform.LookAt(target.transform);
+        camTransform.rotation = rotation;
+        camTransform.position = target.transform.position + offset;
     }
 }
 
