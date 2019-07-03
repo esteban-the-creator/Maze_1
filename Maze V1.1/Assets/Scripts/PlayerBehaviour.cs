@@ -18,6 +18,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        print("hello!!!!");
         if (other.GetComponentInParent<IInteract>() != null)
         {
             other.GetComponentInParent<IInteract>().Interact();
