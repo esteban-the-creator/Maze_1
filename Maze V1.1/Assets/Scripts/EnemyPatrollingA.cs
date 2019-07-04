@@ -2,35 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyMovement : MonoBehaviour
+[RequireComponent(requiredComponent: typeof(Detectar))]
+
+public class EnemyPatrollingA : MonoBehaviour
 {
     private Transform enemyTransform;
     public List<Transform> waitPointTransforms;
     [SerializeField]
     private int actualWaitpoint = 0;
     private float movementSpeed = 5f;
+    Detectar detectar;
 
     void Awake()
     {
         enemyTransform = transform;
+        detectar = gameObject.GetComponent<Detectar>();//le añade al gamecomponent detectar al objeto al que se le asigne este script de patrullaje
     }
 
     public void Move()
     {
-        Vector3 actualWaitPointDisplacement = waitPointTransforms[actualWaitpoint].position - enemyTransform.position; // waitPointTransforms[actualWaitpoint].position significa: listadetransform[en la pos actual].position (se accede al transform.position del empty actual)
-        float distanceToWaitPoint = actualWaitPointDisplacement.magnitude;
-
-        if (distanceToWaitPoint > 1)
+       
+        
+        if (detectar.getDeteccion() == false)
         {
-            Vector3 directionVector = actualWaitPointDisplacement.normalized;
-            enemyTransform.position += directionVector * movementSpeed * Time.deltaTime;
-        }
+            Vector3 actualWaitPointDisplacement = waitPointTransforms[actualWaitpoint].position - enemyTransform.position; // waitPointTransforms[actualWaitpoint].position significa: listadetransform[en la pos actual].position (se accede al transform.position del empty actual)
+            float distanceToWaitPoint = actualWaitPointDisplacement.magnitude;
 
-        else
-        {
-            actualWaitpoint++;
-            if (actualWaitpoint >= waitPointTransforms.Count)
-                actualWaitpoint = 0;
+            if (distanceToWaitPoint > 1)
+            {
+                Vector3 directionVector = actualWaitPointDisplacement.normalized;
+                enemyTransform.position += directionVector * movementSpeed * Time.deltaTime;
+            }
+
+            else
+            {
+                actualWaitpoint++;
+                if (actualWaitpoint >= waitPointTransforms.Count)
+                    actualWaitpoint = 0;
+            }
         }
     }
+
+   
+
 }
