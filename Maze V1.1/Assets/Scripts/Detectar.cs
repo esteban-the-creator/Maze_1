@@ -21,6 +21,20 @@ public class Detectar : MonoBehaviour
        
     }
 
+    private void Start()
+    {
+        try
+        {
+            playerTransform = GameObject.Find("PlayerCenter").transform;
+        }
+        catch
+        {
+            Debug.LogWarning("No encontré un objeto con el nombre de PlayerCenter");
+        }
+
+        warning = this.transform.Find("Warning").gameObject;
+        alert = this.transform.Find("Alert").gameObject;
+    }
 
 
     void Update()
@@ -71,7 +85,7 @@ public class Detectar : MonoBehaviour
             {
                 RaycastHit impactado;
 
-                Debug.DrawRay(enemyTransform.position + spaceBtwnCharacters.normalized * 1.01f, spaceBtwnCharacters.normalized * 100, Color.blue);
+                Debug.DrawRay(enemyTransform.position , spaceBtwnCharacters.normalized * 100, Color.blue);
 
 
                 if (Physics.Raycast(enemyTransform.position + spaceBtwnCharacters.normalized * 1f, spaceBtwnCharacters.normalized, out impactado, Mathf.Infinity))

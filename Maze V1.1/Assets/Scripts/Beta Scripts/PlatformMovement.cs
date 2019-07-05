@@ -3,54 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformMovement : MonoBehaviour
-  { 
-    private Transform platformTransform;
-    public Transform[] waitPointTransforms = new Transform[2];
-    [SerializeField]
-    //private int actualWaitpoint = 0;
-    private float movementSpeed = 5f;
-    private float waiting;
-    private bool switche;
-    
-    void Awake()
+{
+    public Transform[] positionsToGO;
+    public bool imDownHere = true;
+    public Transform currentToGo;
+    public float speed;
+
+    private void Start()
     {
-        platformTransform = transform;
+        currentToGo = positionsToGO[0];
     }
 
-    void OnMouseDown()
+    private void OnCollisionEnter(Collision other)
     {
-        switche = !switche;
+        if(other.transform.name == "Jugador1" )
+        {
+            Switch();
+        }
+    }
+    private void OnCollisionExit(Collision other)
+    {
+        if (other.transform.name == "Jugador1")
+        {
+            Switch();
+        }
+
     }
 
     private void Update()
     {
-        Move();
+
+        transform.position = Vector3.MoveTowards(transform.position,currentToGo.position,speed * Time.deltaTime);
+
+ 
     }
 
-    public void Move()
+    void Switch()
     {
-       /* Vector3 actualWaitPointDisplacement = waitPointTransforms[actualWaitpoint].position - platformTransform.position; // waitPointTransforms[actualWaitpoint].position significa: listadetransform[en la pos actual].position (se accede al transform.position del empty actual)
-        float distanceToWaitPoint = actualWaitPointDisplacement.magnitude;
-        */
-        if (switche == true) {
 
-        Vector3 actualWaitPointDisplacement = waitPointTransforms[1].position;
+        imDownHere = !imDownHere;
 
-        Vector3 directionVector = actualWaitPointDisplacement.normalized;
-                platformTransform.position += directionVector * movementSpeed * Time.deltaTime;
-
-                for (waiting = 0; waiting < 5; waiting++)
-                { waiting *= Time.deltaTime; };
+        if (imDownHere)
+        {
+            currentToGo = positionsToGO[0];
         }
-
-        else {
-            Vector3 actualWaitPointDisplacement = waitPointTransforms[0].position;
-
-            Vector3 directionVector = actualWaitPointDisplacement.normalized;
-            platformTransform.position += directionVector * movementSpeed * Time.deltaTime;
-
-            for (waiting = 0; waiting < 5; waiting++)
-            { waiting *= Time.deltaTime; };
+        else
+        {
+            currentToGo = positionsToGO[1];
         }
-    }    
+    }
 }
