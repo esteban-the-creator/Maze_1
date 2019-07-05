@@ -19,15 +19,20 @@ public class EnemyPatrollingA : MonoBehaviour
         detectar = gameObject.GetComponent<Detectar>();//le añade al gamecomponent detectar al objeto al que se le asigne este script de patrullaje
     }
 
+    private void Update()
+    {
+        Move();
+    }
+
     public void Move()
     {
-       
-        
+        Vector3 actualWaitPointDisplacement = waitPointTransforms[actualWaitpoint].position - enemyTransform.position; // waitPointTransforms[actualWaitpoint].position significa: listadetransform[en la pos actual].position (se accede al transform.position del empty actual)
+        float distanceToWaitPoint = actualWaitPointDisplacement.magnitude;
+
+        Debug.Log ("el valor de la detección es : " + detectar.getDeteccion());
+
         if (detectar.getDeteccion() == false)
         {
-            Vector3 actualWaitPointDisplacement = waitPointTransforms[actualWaitpoint].position - enemyTransform.position; // waitPointTransforms[actualWaitpoint].position significa: listadetransform[en la pos actual].position (se accede al transform.position del empty actual)
-            float distanceToWaitPoint = actualWaitPointDisplacement.magnitude;
-
             if (distanceToWaitPoint > 1)
             {
                 Vector3 directionVector = actualWaitPointDisplacement.normalized;
@@ -41,6 +46,8 @@ public class EnemyPatrollingA : MonoBehaviour
                     actualWaitpoint = 0;
             }
         }
+
+        
     }
 
    
