@@ -6,11 +6,18 @@ public class Damage : MonoBehaviour
 {
     public GameObject target;
     public float power = 200;
+    public AudioClip shooting;
+
+    private void Awake()
+    {
+    }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            AudioSource.PlayClipAtPoint(shooting,Camera.main.transform.position);
+
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             Debug.DrawRay(ray.origin,  ray.direction * 100, Color.red,1);
 
