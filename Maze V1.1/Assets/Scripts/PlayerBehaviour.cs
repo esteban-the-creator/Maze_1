@@ -5,9 +5,10 @@ using UnityEngine;
 public class PlayerBehaviour : MonoBehaviour
 {
     float rotationX;
-    public int fullHealth = 100;
-    public int health = 300;
+    public int fullHealth = 188;
+    public int health = 188;
     public Vector3 posicionJugador;
+    public Transform respawnPoint;
 
 
     void Update()
@@ -17,6 +18,8 @@ public class PlayerBehaviour : MonoBehaviour
         posicionJugador = transform.eulerAngles = new Vector3(0, rotationX, 0);
 
         AdjustHealth(0);
+
+        print("la salud del player1 es: " + health);
     }
 
     
@@ -28,7 +31,8 @@ public class PlayerBehaviour : MonoBehaviour
             health = 0;
             if (gameObject != null)
             {
-                // haga un empty y llevelo alla;
+                transform.position = respawnPoint.position;
+                health = fullHealth;
             }
         }
         if (health > fullHealth)
