@@ -94,6 +94,7 @@ public class Detectar : MonoBehaviour
 
                     if (impactado.collider.gameObject.name == "Jugador1")
                     {
+                        impactado.transform.GetComponent<PlayerBehaviour>().AdjustHealth(-10);
                         return true;
                     }
                 }

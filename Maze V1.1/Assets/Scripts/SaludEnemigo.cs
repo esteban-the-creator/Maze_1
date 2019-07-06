@@ -7,13 +7,13 @@ public class SaludEnemigo : MonoBehaviour
 
     public int fullHealth = 100;
     public int health = 100;
-    public float healthBar;
+    //public float healthBar;
 
 
-    void Start()
-    {
-        healthBar = Screen.width / 2;
-    }
+    //void Start()
+    //{
+    //    healthBar = Screen.width / 2;
+    //}
 
 
     void Update()

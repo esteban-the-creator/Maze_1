@@ -42,19 +42,18 @@ public class Damage : MonoBehaviour
         {
             //Attack();
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Debug.DrawRay(transform.position, Vector3.forward * 100, Color.red);
+            Debug.DrawRay(ray.origin,  ray.direction * 100, Color.red,1);
+
             RaycastHit hitInfo;
-            if (Physics.Raycast(ray, out hitInfo, 25.0f))
+
+            if (Physics.Raycast(ray, out hitInfo))
             {
-                hitInfo.rigidbody.AddForceAtPosition(ray.direction * power, hitInfo.point);
-
-                if (hitInfo.rigidbody.tag == "Enemy" && hitInfo.rigidbody != null) 
+              
+                if (hitInfo.transform.tag == "Enemy" && hitInfo.rigidbody != null) 
                 {
-                    SaludEnemigo saluEnem = hitInfo.collider.GetComponent<SaludEnemigo>();
-                    //(SaludEnemigo)target.GetComponent("SaludEnemigo");
+                    hitInfo.rigidbody.AddForceAtPosition(ray.direction * power, hitInfo.point);
 
-
-                    saluEnem.AdjustHealth(-10);
+                    hitInfo.transform.GetComponent<SaludEnemigo>().AdjustHealth(-10);
                 }
             }
         }
